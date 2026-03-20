@@ -1,17 +1,38 @@
-const { body } = require('express-validator');
+const yup = require('yup');
 
-exports.registerValidator = [
-  body('name').notEmpty().withMessage('Nome é obrigatório'),
-  body('email').isEmail().withMessage('Email inválido'),
-  body('password')
-    .isLength({ min: 6 })
-    .withMessage('Senha deve ter no mínimo 6 caracteres'),
-  body('role')
-    .isIn(['STUDENT', 'TEACHER', 'ADMIN'])
-    .withMessage('Role inválida')
-];
+const registerValidator = yup.object().shape({
+    name: yup.string().required(),
+    email: yup.string().email().required(),
+    password: yup.string().min(6).required(),
+    role: yup.string().oneOf(['STUDENT', 'TEACHER', 'ADMIN']).required(),
 
-exports.loginValidator = [
-  body('email').isEmail().withMessage('Email inválido'),
-  body('password').notEmpty().withMessage('Senha é obrigatória')
-];
+    specialty: yup.string().when('role', {
+        is: 'TEACHER',
+        then: schema => schema.required()
+    }),
+
+    hire_date: yup.date().when('role', {
+        is: 'TEACHER',
+        then: schema => schema.required()
+    }),
+
+    registration: yup.number().when('role', {
+        is: 'STUDENT',
+        then: schema => schema.required()
+    }),
+
+    course_id: yup.number().when('role', {
+        is: 'STUDENT',
+        then: schema => schema.required()
+    })
+});
+
+const loginValidator = yup.object().shape({
+    email: yup.string().email().required(),
+    password: yup.string().required()
+});
+
+module.exports = {
+    registerValidator,
+    loginValidator
+};

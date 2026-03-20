@@ -20,7 +20,7 @@ const Course = sequelize.define('Course', {
         allowNull: true
     },
 
-    // Carga horária total do curso (ex: 3000h)
+    // Carga horária total do curso (ex: 3000)
     workload: {
         type: DataTypes.INTEGER, 
         allowNull: false

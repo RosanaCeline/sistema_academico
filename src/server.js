@@ -18,7 +18,7 @@ app.get("/", (req, res) => {
 
 // Teste de conexão com o banco de dados
 sequelize
-  .sync({ alter: true })
+  .sync()
   .then(() => console.log("Banco conectado com sucesso"))
   .catch((err) => console.error("Erro ao conectar no banco:", err));
 
