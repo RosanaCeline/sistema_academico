@@ -33,7 +33,7 @@ const validate = require('../middlewares/validate');
  *                 example: joao@gmail.com
  *               password:
  *                 type: string
- *                 example: 123456
+ *                 example: abcdef
  *               role:
  *                 type: string
  *                 enum: [STUDENT, TEACHER, ADMIN]
@@ -64,7 +64,7 @@ router.post('/register', registerValidator, validate, authController.register);
  *                 example: joao@gmail.com
  *               password:
  *                 type: string
- *                 example: 123456
+ *                 example: abcdef
  *     responses:
  *       200:
  *         description: Login realizado com sucesso

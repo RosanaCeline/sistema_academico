@@ -2,7 +2,9 @@
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
+
 const sequelize = require("./config/database");
+require('./models');
 
 const app = require('./app');
 
@@ -16,7 +18,7 @@ app.get("/", (req, res) => {
 
 // Teste de conexão com o banco de dados
 sequelize
-  .authenticate()
+  .sync({ alter: true })
   .then(() => console.log("Banco conectado com sucesso"))
   .catch((err) => console.error("Erro ao conectar no banco:", err));
 
