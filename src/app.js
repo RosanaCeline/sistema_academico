@@ -6,6 +6,8 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./config/swagger');
 
 const authRoutes = require('./routes/authRoutes');
+const courseRoutes = require('./routes/courseRoutes');
+const subjectRoutes = require('./routes/subjectRoutes');
 
 require("dotenv").config();
 
@@ -19,6 +21,8 @@ app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // rotas
 app.use("/api/auth", authRoutes);
+app.use("/api/courses", courseRoutes);
+app.use("/api/subject", subjectRoutes);
 
 app.get('/', (req, res) => {
     res.json({ message: 'O Market System API funcionando!' });
