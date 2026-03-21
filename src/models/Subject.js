@@ -33,9 +33,16 @@ const Subject = sequelize.define('Subject', {
     }
 });
 
-
-Subject.belongsTo(Course, { foreignKey: 'course_id' });
-Course.hasMany(Subject, { foreignKey: 'course_id' });
+Subject.belongsTo(Course, { 
+    foreignKey: 'course_id',
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE'
+});
+Course.hasMany(Subject, { 
+    foreignKey: 'course_id',
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE'
+});
 
 Subject.belongsTo(Teacher, { foreignKey: 'teacher_id' });
 Teacher.hasMany(Subject, { foreignKey: 'teacher_id' });

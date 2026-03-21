@@ -22,7 +22,7 @@ app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 // rotas
 app.use("/api/auth", authRoutes);
 app.use("/api/courses", courseRoutes);
-app.use("/api/subject", subjectRoutes);
+app.use("/api/subjects", subjectRoutes);
 
 app.get('/', (req, res) => {
     res.json({ message: 'O Market System API funcionando!' });
