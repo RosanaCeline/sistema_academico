@@ -7,6 +7,13 @@ const { registerValidator, loginValidator } = require('../validators/authValidat
 
 /**
  * @swagger
+ * tags:
+ *   name: Auth
+ *   description: Funcionalidades de autenticação de usuário
+ */
+
+/**
+ * @swagger
  * /auth/register:
  *   post:
  *     summary: Cadastrar novo usuário
