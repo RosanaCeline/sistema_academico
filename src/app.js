@@ -8,6 +8,9 @@ const swaggerSpec = require('./config/swagger');
 const authRoutes = require('./routes/authRoutes');
 const courseRoutes = require('./routes/courseRoutes');
 const subjectRoutes = require('./routes/subjectRoutes');
+const enrollmentRoutes = require('./routes/enrollmentRoutes');
+const gradeRoutes = require('./routes/gradeRoutes');
+const attendanceRoutes = require('./routes/attendanceRoutes');
 
 require("dotenv").config();
 
@@ -19,13 +22,15 @@ app.use(express.json());
 app.get('/docs-json', (req, res) => res.json(swaggerSpec));
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-// rotas
 app.use("/api/auth", authRoutes);
 app.use("/api/courses", courseRoutes);
 app.use("/api/subjects", subjectRoutes);
+app.use("/api/enrollments", enrollmentRoutes);
+app.use("/api/grades", gradeRoutes);
+app.use("/api/attendances", attendanceRoutes);
 
 app.get('/', (req, res) => {
-    res.json({ message: 'O Market System API funcionando!' });
+    res.json({ message: 'A API de Sistema Acadêmico está funcionando!' });
 });
 
 module.exports = app;
