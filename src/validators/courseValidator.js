@@ -1,21 +1,48 @@
 const yup = require('yup');
 
-const courseSchema = yup.object({
-  name: yup
-    .string()
-    .trim()
-    .required('Nome do curso é obrigatório'),
+const courseCreateSchema = yup.object().shape({
+    name: yup
+        .string()
+        .trim()
+        .min(3, 'Nome deve ter no mínimo 3 caracteres')
+        .max(50, 'Nome muito longo')
+        .required('Nome do curso é obrigatório'),
 
-  description: yup
-    .string()
-    .nullable(),
+    description: yup
+        .string()
+        .trim()
+        .max(255, 'Descrição muito longa')
+        .nullable(),
 
-  workload: yup
-    .number()
-    .typeError('Carga horária deve ser um número')
-    .required('Carga horária do curso é obrigatória')
-    .integer('Carga horária deve ser um número inteiro')
-    .positive('Carga horária deve ser maior que zero')
+    workload: yup
+        .number()
+        .typeError('Carga horária deve ser um número')
+        .integer('Carga horária deve ser inteira')
+        .min(1, 'Carga horária deve ser maior que 0')
+        .required('Carga horária é obrigatória')
 });
 
-module.exports = { courseSchema };
+const courseUpdateSchema = yup.object().shape({
+    name: yup
+        .string()
+        .trim()
+        .min(3, 'Nome deve ter no mínimo 3 caracteres')
+        .max(50, 'Nome muito longo'),
+
+    description: yup
+        .string()
+        .trim()
+        .max(255, 'Descrição muito longa')
+        .nullable(),
+
+    workload: yup
+        .number()
+        .typeError('Carga horária deve ser um número')
+        .integer('Carga horária deve ser inteira')
+        .min(1, 'Carga horária deve ser maior que 0')
+});
+
+module.exports = {
+    courseCreateSchema,
+    courseUpdateSchema
+};

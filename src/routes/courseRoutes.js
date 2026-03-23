@@ -1,5 +1,10 @@
-const router = require('express').Router();
+const express = require('express');
+const router = express.Router();
+
 const CourseController = require('../controllers/courseController');
+const validate = require('../middlewares/validate');
+const { courseCreateSchema, courseUpdateSchema } = require('../validators/courseValidator');
+
 const auth = require('../middlewares/authMiddleware');
 const role = require('../middlewares/roleMiddleware');
 
@@ -42,7 +47,7 @@ const role = require('../middlewares/roleMiddleware');
  *       400:
  *         description: Erro de validação
  */
-router.post('/', auth, role(['ADMIN']), CourseController.create);
+router.post('/', auth, role(['ADMIN']), validate(courseCreateSchema), CourseController.create);
 
 /**
  * @swagger
@@ -115,7 +120,7 @@ router.get('/:id', auth, CourseController.findById);
  *       200:
  *         description: Curso atualizado
  */
-router.put('/:id', auth, role(['ADMIN']), CourseController.update);
+router.put('/:id', auth, role(['ADMIN']), validate(courseUpdateSchema), CourseController.update);
 
 /**
  * @swagger
