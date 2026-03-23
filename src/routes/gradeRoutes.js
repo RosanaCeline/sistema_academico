@@ -158,13 +158,13 @@ router.put('/:id', auth, role(['TEACHER']), validate(gradeUpdateSchema), GradeCo
 /**
  * @swagger
  * /grades/{id}:
- *   put:
- *     summary: Atualizar nota
+ *   delete:
+ *     summary: Deletar nota
  *     tags: [Grades]
  *     description: |
- *       Permite ao professor atualizar o valor de uma nota.
- *       - Não é permitido alterar a média final
- *       - Não é permitido alterar notas de matrículas concluídas, reprovadas ou canceladas
+ *       Permite ao professor remover uma nota.
+ *       - Não é permitido remover a média final
+ *       - Não é permitido remover notas de matrículas concluídas ou reprovadas
  *     security:
  *       - bearerAuth: []
  *     parameters:
@@ -174,21 +174,9 @@ router.put('/:id', auth, role(['TEACHER']), validate(gradeUpdateSchema), GradeCo
  *         schema:
  *           type: integer
  *         description: ID da nota
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               value:
- *                 type: number
- *                 example: 9.0
  *     responses:
  *       200:
- *         description: Nota atualizada com sucesso
- *       400:
- *         description: Dados inválidos
+ *         description: Nota removida com sucesso
  *       403:
  *         description: Acesso negado
  *       404:
