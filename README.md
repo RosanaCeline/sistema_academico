@@ -2,7 +2,7 @@
 
 ## Descrição do Sistema
 
-Este projeto consiste em uma API REST para gerenciamento de um sistema acadêmico (faculdade/escola), permitindo o controle de alunos, professores, disciplinas, matrículas, notas e frequência.
+Este projeto consiste em uma API RESTful para gerenciamento de um sistema acadêmico (faculdade/escola), permitindo o controle de alunos, professores, disciplinas, matrículas, notas e frequência.
 
 A aplicação foi desenvolvida seguindo arquitetura em camadas, aplicando autenticação JWT e gerenciamento de roles.
 
