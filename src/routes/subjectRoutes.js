@@ -1,5 +1,10 @@
-const router = require('express').Router();
+const express = require('express');
+const router = express.Router();
+
 const SubjectController = require('../controllers/subjectController');
+const validate = require('../middlewares/validate');
+const { subjectCreateSchema, subjectUpdateSchema } = require('../validators/subjectValidator');
+
 const auth = require('../middlewares/authMiddleware');
 const role = require('../middlewares/roleMiddleware');
 
@@ -48,7 +53,7 @@ const role = require('../middlewares/roleMiddleware');
  *       400:
  *         description: Erro de validação
  */
-router.post('/', auth, role(['ADMIN']), SubjectController.create);
+router.post('/', auth, role(['ADMIN']), validate(subjectCreateSchema), SubjectController.create);
 
 /**
  * @swagger
@@ -127,7 +132,7 @@ router.get('/:id', auth, SubjectController.findById);
  *       200:
  *         description: Disciplina atualizada
  */
-router.put('/:id', auth, role(['ADMIN']), SubjectController.update);
+router.put('/:id', auth, role(['ADMIN']), validate(subjectCreateSchema), SubjectController.update);
 
 /**
  * @swagger
