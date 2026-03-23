@@ -9,6 +9,11 @@ const Enrollment = sequelize.define('Enrollment', {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
+    },
+
+    status: {
+      type: DataTypes.ENUM('ENROLLED', 'CANCELLED', 'COMPLETED', 'REPROVED'),
+      defaultValue: 'ENROLLED'
     }
 }, {
   indexes: [
