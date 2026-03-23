@@ -1,6 +1,8 @@
 const sequelize = require('../config/database');
 const Grade = require('../models/Grade');
 const Enrollment = require('../models/Enrollment');
+const Teacher = require('../models/Teacher');
+const Subject = require('../models/Subject')
 
 class GradeService {
 

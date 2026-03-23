@@ -11,16 +11,16 @@ const role = require('../middlewares/roleMiddleware');
 /**
  * @swagger
  * tags:
- *   name: Attendance
+ *   name: Attendances
  *   description: Gerenciamento de frequências de alunos
  */
 
 /**
  * @swagger
- * /attendance:
+ * /attendances:
  *   post:
  *     summary: Lançar frequência final de um aluno
- *     tags: [Attendance]
+ *     tags: [Attendances]
  *     description: Apenas professores podem lançar a frequência final de uma matrícula
  *     security:
  *       - bearerAuth: []
@@ -52,10 +52,10 @@ router.post('/', auth, role(['TEACHER']), validate(attendanceCreateSchema), Atte
 
 /**
  * @swagger
- * /attendance/enrollment/{enrollment_id}:
+ * /attendances/enrollment/{enrollment_id}:
  *   get:
  *     summary: Ver frequência de uma matrícula
- *     tags: [Attendance]
+ *     tags: [Attendances]
  *     description: |
  *       Retorna a frequência de uma matrícula.
  *       - Estudante só pode ver a própria frequência
@@ -84,10 +84,10 @@ router.get('/enrollment/:enrollment_id', auth, role(['TEACHER', 'ADMIN', 'STUDEN
 
 /**
  * @swagger
- * /attendance/subject/{subject_id}:
+ * /attendances/subject/{subject_id}:
  *   get:
  *     summary: Listar frequências de uma disciplina
- *     tags: [Attendance]
+ *     tags: [Attendances]
  *     description: |
  *       Retorna todas as frequências dos alunos de uma disciplina.
  *       - Professor apenas disciplinas dele
@@ -115,10 +115,10 @@ router.get('/subject/:subject_id', auth, role(['TEACHER', 'ADMIN']), AttendanceC
 
 /**
  * @swagger
- * /attendance/{id}:
+ * /attendances/{id}:
  *   put:
  *     summary: Atualizar frequência
- *     tags: [Attendance]
+ *     tags: [Attendances]
  *     description: Apenas professores podem atualizar a frequência
  *     security:
  *       - bearerAuth: []
@@ -155,10 +155,10 @@ router.put('/:id', auth, role(['TEACHER']), validate(attendanceUpdateSchema), At
 
 /**
  * @swagger
- * /attendance/{id}:
+ * /attendances/{id}:
  *   delete:
  *     summary: Deletar frequência
- *     tags: [Attendance]
+ *     tags: [Attendances]
  *     description: Apenas professores podem deletar a frequência
  *     security:
  *       - bearerAuth: []

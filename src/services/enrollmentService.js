@@ -90,6 +90,12 @@ class EnrollmentService {
 
     async findBySubject(subject_id, user) {
 
+        const subject = await Subject.findByPk(subject_id);
+
+        if (!subject) {
+            throw new Error('Disciplina não encontrada');
+        }
+
         // Professor só pode ver disciplina dele
         if (user.role === 'TEACHER') {
 
